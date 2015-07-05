@@ -1,0 +1,95 @@
+<?php
+
+$huielementclass = 'HuiHtmlArea';
+
+if ( defined( 'HTMLAREA_HUI' ) ) return;
+else define( 'HTMLAREA_HUI', true );
+
+class HuiHtmlArea extends HuiWidgetElement
+{
+    var $mWidgetType = 'htmlarea';
+    /*! @var mValue string - Default value. */
+    var $mValue;
+    var $mDisp;
+    var $mRows;
+    var $mCols;
+    /*! @var mCompact boolean - Set to 'true' to show compact text editor. */
+    var $mCompact;
+
+    function HuiHtmlArea(
+        $elemName,
+        $elemArgs = '',
+        $elemTheme = '',
+        $dispEvents = ''
+        )
+    {
+        $this->HuiWidgetElement(
+            $elemName,
+            $elemArgs,
+            $elemTheme,
+            $dispEvents
+            );
+
+        if ( isset( $this->mArgs['disp'] ) ) $this->mDisp = $this->mArgs['disp'];
+        if ( isset( $this->mArgs['content'] ) ) $this->mContent = $this->mArgs['content'];
+        if ( isset( $this->mArgs['rows'] ) ) $this->mRows = $this->mArgs['rows'];
+        if ( isset( $this->mArgs['cols'] ) ) $this->mCols = $this->mArgs['cols'];
+        if ( isset( $this->mArgs['compact'] ) ) $this->mCompact = $this->mArgs['compact'];
+        if ( isset( $this->mArgs['value'] ) ) $this->mValue = $this->mArgs['value'];
+    }
+
+    function _Build()
+    {
+        $event_data = new HuiEventRawData( $this->mDisp, $this->mName );
+
+        $this->mLayout = ( $this->mComments ? '<!-- begin '.$this->mName.' htmlarea -->' : '' );
+
+        if ( $this->mCompact )
+        {
+            $this->mLayout .=
+"<script type=\"text/javascript\">
+var config = new Object();    // create new config object
+
+config.bodyStyle = 'background-color: white; font-family: \"Verdana\"; font-size: x-small;';
+config.debug = 0;
+
+// NOTE:  You can remove any of these blocks and use the default config!
+
+config.toolbar = [
+    ['bold','italic','underline','separator'],
+    ['strikethrough','subscript','superscript','separator'],
+    ['justifyleft','justifycenter','justifyright','separator'],
+    ['OrderedList','UnOrderedList','Outdent','Indent','separator'],
+    ['forecolor','backcolor','separator'],
+    ['HorizontalRule','Createlink','htmlmode','separator'],
+    ['popupeditor','separator'],
+    ['help']
+];
+</script>";
+        }
+
+        $this->mLayout .=
+'<script type="text/javascript">
+_editor_url = "'.CGI_URL.'htmlarea/";
+
+var win_ie_ver = parseFloat(navigator.appVersion.split("MSIE")[1]);
+if (navigator.userAgent.indexOf(\'Mac\')        >= 0) { win_ie_ver = 0; }
+if (navigator.userAgent.indexOf(\'Windows CE\') >= 0) { win_ie_ver = 0; }
+if (navigator.userAgent.indexOf(\'Opera\')      >= 0) { win_ie_ver = 0; }
+if (win_ie_ver >= 5.5) {
+  document.write(\'<scr\' + \'ipt src="\' +_editor_url+ \'editor.js"\');
+  document.write(\' language="Javascript1.2"></scr\' + \'ipt>\');
+} else { document.write(\'<scr\'+\'ipt>function editor_generate() { return false; }</scr\'+\'ipt>\'); }
+// --></script>'.
+'<textarea name="'.$event_data->GetDataString().'" id="'.$this->mName.'" rows="'.$this->mRows.'" cols="'.$this->mCols.'">'.$this->mValue.'</textarea>'.
+'<script language="javascript1.2" defer>
+editor_generate('."'".$event_data->GetDataString()."'".( $this->mCompact ? ', config' : '' ).');
+</script>
+'.
+            ( $this->mComments ? '<!-- end '.$this->mName." htmlarea -->\n" : '' );
+
+        return true;
+    }
+}
+
+?>

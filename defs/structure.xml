@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<structure>
+
+    <huielement
+        name="htmlarea"
+        file="htmlarea.hui"/>
+
+    <generalpreinstall
+        file="generalpreinstall.php"/>
+
+    <generalpreupdate
+        file="generalpreupdate.php"/>
+
+    <generalpostuninstall
+        file="generalpostuninstall.php"/>
+
+    <!--<adminpage
+        name="htmlarea"
+        file="htmlarea.php"
+        themeicon="htmlarea"
+        catalog="htmlarea"
+        category="tools"/>-->
+
+</structure>

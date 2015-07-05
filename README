@@ -1,0 +1,74 @@
+General information
+-------------------
+
+htmlArea is a WYSIWYG editor replacement for any <textarea> field. Instead
+of teaching your software users how to code basic HTML to format their
+content, they can use htmlArea to:
+
+    o Format text to be bold, italicized, or underlined.
+    o Change the face, size and colour.
+    o Left, centre, or right-justify paragraphs.
+    o Make bulleted or numbered lists.
+    o Indent or un-indent paragraphs
+    o Insert a horizontal line.
+    o Insert hyperlinks and images.
+    o Insert tables
+    o View the raw HTML source of what they're editing.
+
+You can also create your own buttons to insert custom blocks of HTML code
+and images.
+
+htmlArea is provided by interactivetools.com completely free.
+
+Please note: because htmlArea is available for free, we can't provide
+any support. Post a question to our Forum if you're having a problem
+and someone may be able to help you there.
+
+
+
+License
+-------
+See the file named LICENSE.
+
+
+
+Requirements
+------------
+
+Serverside:
+	a working Ampoliros platform installation.
+
+Clientside:
+	a web browser with HTML 4.0 and CSS support.
+
+
+
+Installation
+------------
+
+See the file named INSTALL.
+
+
+
+Additional Information
+----------------------
+
+Ampoliros official home page:
+	http://www.ampoliros.com
+
+HTML Area official home page:
+	http://www.interactivetools.com/products/htmlarea/
+
+To submit a bug report:
+	send an email to supporto@solarix.it
+
+To submit a support request:
+	send an email to supporto@solarix.it
+
+
+
+Disclaimer
+----------
+
+There is no warranty, expressed or implied, associated with this product.
+Use at your own risk.
